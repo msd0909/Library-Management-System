@@ -1,0 +1,21 @@
+apiVersion: apps/v1  # Specifies the Kubernetes API version
+kind: Deployment     # Defines the type of Kubernetes object
+metadata:
+  name: libsystem-deployment # Name of the Deployment
+  labels:
+    app: libsystem
+spec:
+  replicas: 2        # Desired number of Pod replicas
+  selector:
+    matchLabels:
+      app: libsystem   # Selects Pods with this label
+  template:          # Template for the Pods managed by this Deployment
+    metadata:
+      labels:
+        app: libsystem
+    spec:
+      containers:
+      - name: libsystem-app-container # Name of the container
+        image: libsystem-app # Docker image to use
+        ports:
+        - containerPort: 8000 # Port exposed by the container
